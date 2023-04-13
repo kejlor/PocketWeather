@@ -11,7 +11,12 @@ class WeatherViewController: UIViewController {
     
     var weather: WeatherResult?
     
-    var textField = UITextField()
+    let stackView = UIStackView()
+//    let image
+    let cityNameLabel = UILabel()
+    let temperatureLabel = UILabel()
+    let cityNameTextField = UITextField()
+    
     
     var weatherManager: WeatherManager = WeatherManager()
     
@@ -20,9 +25,6 @@ class WeatherViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alert
     }()
-    
-    let stackView = UIStackView()
-    let label = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +41,10 @@ extension WeatherViewController {
         stackView.spacing = 20
         stackView.backgroundColor = .orange
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Welcome"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
     }
     
     func layout() {
-        stackView.addArrangedSubview(label)
+//        stackView.addArrangedSubview()
         
         view.addSubview(stackView)
         
