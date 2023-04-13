@@ -16,6 +16,7 @@ class WeatherViewController: UIViewController {
     let cityNameLabel = UILabel()
     let temperatureLabel = UILabel()
     let cityNameTextField = UITextField()
+    let searchButton = UIButton()
     
     
     var weatherManager: WeatherManager = WeatherManager()
@@ -30,7 +31,6 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        fetchWeather(cityName: "leszno")
     }
 }
 
@@ -41,10 +41,32 @@ extension WeatherViewController {
         stackView.spacing = 20
         stackView.backgroundColor = .orange
         
+        cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        cityNameLabel.text = ""
+        cityNameLabel.textAlignment = .center
+        cityNameLabel.numberOfLines = 0
+        
+        temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+        temperatureLabel.text = ""
+        temperatureLabel.textAlignment = .center
+        
+        cityNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        cityNameTextField.placeholder = "Enter city name"
+        cityNameTextField.textAlignment = .center
+        cityNameTextField.delegate = self
+        
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.configuration = .filled()
+        searchButton.configuration?.imagePadding = 8
+        searchButton.setTitle("Search", for: [])
+        searchButton.addTarget(self, action: #selector(searchTapped), for: .primaryActionTriggered)
     }
     
     func layout() {
-//        stackView.addArrangedSubview()
+        stackView.addArrangedSubview(cityNameLabel)
+        stackView.addArrangedSubview(temperatureLabel)
+        stackView.addArrangedSubview(cityNameTextField)
+        stackView.addArrangedSubview(searchButton)
         
         view.addSubview(stackView)
         
@@ -52,6 +74,22 @@ extension WeatherViewController {
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension WeatherViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        cityNameTextField.endEditing(true)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
     }
 }
 
@@ -64,6 +102,8 @@ extension WeatherViewController {
             case .success(let weather):
                 self.weather = weather
                 print(weather.main.temp)
+                self.cityNameLabel.text = weather.name
+                self.temperatureLabel.text = String(weather.main.temp)
             case .failure(let error):
                 self.displayError(error)
             }
@@ -84,7 +124,7 @@ extension WeatherViewController {
             message = "We could not process your request. Please try again."
         case .decodingError:
             title = "Network Error"
-            message = "Ensure you are connected to the internet. Please try again."
+            message = "Ensure you have provided correct city name. Please try again."
         }
         return (title, message)
     }
@@ -97,5 +137,20 @@ extension WeatherViewController {
         if !errorAlert.isBeingPresented {
             present(errorAlert, animated: true, completion: nil)
         }
+    }
+}
+
+// MARK: - Actions
+extension WeatherViewController {
+    @objc func searchTapped(sender: UIButton) {
+        fetchWeather(cityName: cityNameTextField.text ?? "")
+    }
+    
+    @objc func refreshContent() {
+        reset()
+    }
+    
+    private func reset() {
+        weather = nil
     }
 }
