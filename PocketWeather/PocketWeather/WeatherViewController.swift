@@ -64,9 +64,13 @@ extension WeatherViewController {
             switch result {
             case .success(let weather):
                 self.weather = weather
-                print(weather.main.temp)
-                self.weatherView.cityNameLabel.text = weather.name
-                self.weatherView.temperatureLabel.text = String(weather.main.temp)
+                self.weatherView.cityNameLabelView.label.text = weather.name
+                self.weatherView.weatherType = WeatherType(rawValue: weather.weather[0].main) ?? .Clear
+                self.weatherView.windLabelView.label.text = String(weather.wind.speed)
+                self.weatherView.temperatureLabelView.label.text = String(weather.main.temp)
+                self.weatherView.humidityLabelView.label.text = String(weather.main.humidity)
+                self.weatherView.descriptionLabelView.label.text = weather.weather[0].description
+                self.weatherView.checkWeatherImage()
             case .failure(let error):
                 self.displayError(error)
             }

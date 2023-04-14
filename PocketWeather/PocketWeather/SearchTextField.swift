@@ -8,7 +8,6 @@
 import UIKit
 
 protocol SearchTextFieldDelegate: AnyObject {
-//    func editingChanged(_ sender: SearchTextField)
     func editingDidEnd(_ sender: SearchTextField)
 }
 
@@ -91,5 +90,3 @@ extension SearchTextField: UITextFieldDelegate {
         return true
     }
 }
-
-// MARK: - Actions

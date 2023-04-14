@@ -16,10 +16,12 @@ struct WeatherResult: Decodable {
 
 struct Temperature: Decodable {
     let temp: Double
+    let humidity: Int
 }
 
 struct Weather: Decodable {
     let main: String
+    let description: String
 }
 
 struct Wind: Decodable {
