@@ -13,8 +13,7 @@ class WeatherViewController: UIViewController {
     
     let stackView = UIStackView()
     let weatherView = WeatherView()
-    let searchButton = UIButton()
-    
+    let searchTextField = SearchTextField(placeHolderText: "Enter city name")
     
     var weatherManager: WeatherManager = WeatherManager()
     
@@ -40,16 +39,13 @@ extension WeatherViewController {
         
         weatherView.translatesAutoresizingMaskIntoConstraints = false
         
-        searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.configuration = .filled()
-        searchButton.configuration?.imagePadding = 8
-        searchButton.setTitle("Search", for: [])
-        searchButton.addTarget(self, action: #selector(searchTapped), for: .primaryActionTriggered)
+        searchTextField.translatesAutoresizingMaskIntoConstraints = false
+        searchTextField.delegate = self
     }
     
     func layout() {
         stackView.addArrangedSubview(weatherView)
-        stackView.addArrangedSubview(searchButton)
+        stackView.addArrangedSubview(searchTextField)
         
         view.addSubview(stackView)
         
@@ -106,12 +102,19 @@ extension WeatherViewController {
     }
 }
 
-// MARK: - Actions
-extension WeatherViewController {
-    @objc func searchTapped(sender: UIButton) {
-        fetchWeather(cityName: weatherView.cityNameTextField.text ?? "")
+// MARK: - SearchTextFieldDelegate
+extension WeatherViewController: SearchTextFieldDelegate {
+    func editingChanged(_ sender: SearchTextField) {
+        
     }
     
+    func editingDidEnd(_ sender: SearchTextField) {
+        fetchWeather(cityName: sender.textField.text ?? "")
+    }
+}
+
+// MARK: - Actions
+extension WeatherViewController {
     @objc func refreshContent() {
         reset()
     }

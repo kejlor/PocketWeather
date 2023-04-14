@@ -11,9 +11,10 @@ class WeatherView: UIView {
     
     let stackView = UIStackView()
     let cityNameLabel = UILabel()
+//    let image = UIImage()
+    let weatherNameLabel = UILabel()
+    let windLabel = UILabel()
     let temperatureLabel = UILabel()
-    let cityNameTextField = UITextField()
-    let searchButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,16 +48,18 @@ extension WeatherView {
         temperatureLabel.text = ""
         temperatureLabel.textAlignment = .center
         
-        cityNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        cityNameTextField.placeholder = "Enter city name"
-        cityNameTextField.textAlignment = .center
-        cityNameTextField.delegate = self
+        weatherNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        weatherNameLabel.text = ""
+        weatherNameLabel.textAlignment = .center
+        
+        windLabel.translatesAutoresizingMaskIntoConstraints = false
+        windLabel.text = ""
+        windLabel.textAlignment = .center
     }
     
     func layout() {
         stackView.addArrangedSubview(cityNameLabel)
         stackView.addArrangedSubview(temperatureLabel)
-        stackView.addArrangedSubview(cityNameTextField)
         
         addSubview(stackView)
         
@@ -64,19 +67,5 @@ extension WeatherView {
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
-    }
-}
-
-extension WeatherView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        cityNameTextField.endEditing(true)
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
     }
 }
