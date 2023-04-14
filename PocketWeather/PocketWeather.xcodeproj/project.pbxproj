@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E9A863B629E83C41007949A1 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9A863B529E83C41007949A1 /* Keys.plist */; };
-		E9A863B929E83D48007949A1 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A863B829E83D48007949A1 /* Weather.swift */; };
+		E9A863B929E83D48007949A1 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A863B829E83D48007949A1 /* Temperature.swift */; };
 		E9A863BC29E83E30007949A1 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A863BB29E83E30007949A1 /* WeatherManager.swift */; };
 		E9A863BF29E83F6E007949A1 /* APIKeyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A863BE29E83F6E007949A1 /* APIKeyable.swift */; };
 		E9A863C229E843AC007949A1 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A863C129E843AC007949A1 /* WeatherViewController.swift */; };
@@ -20,7 +20,7 @@
 
 /* Begin PBXFileReference section */
 		E9A863B529E83C41007949A1 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
-		E9A863B829E83D48007949A1 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		E9A863B829E83D48007949A1 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		E9A863BB29E83E30007949A1 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		E9A863BE29E83F6E007949A1 /* APIKeyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyable.swift; sourceTree = "<group>"; };
 		E9A863C129E843AC007949A1 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 		E9A863B729E83D3D007949A1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E9A863B829E83D48007949A1 /* Weather.swift */,
+				E9A863B829E83D48007949A1 /* Temperature.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -188,7 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9A863C229E843AC007949A1 /* WeatherViewController.swift in Sources */,
-				E9A863B929E83D48007949A1 /* Weather.swift in Sources */,
+				E9A863B929E83D48007949A1 /* Temperature.swift in Sources */,
 				E9A863BC29E83E30007949A1 /* WeatherManager.swift in Sources */,
 				E9A863C629E84B24007949A1 /* WeatherView.swift in Sources */,
 				E9D3284C29E0FF6300EE5BA4 /* AppDelegate.swift in Sources */,

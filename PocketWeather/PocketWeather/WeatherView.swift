@@ -10,7 +10,10 @@ import UIKit
 class WeatherView: UIView {
     
     let stackView = UIStackView()
+    let cityNameLabel = UILabel()
+    let temperatureLabel = UILabel()
     let cityNameTextField = UITextField()
+    let searchButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,20 +33,37 @@ class WeatherView: UIView {
 
 extension WeatherView {
     func style() {
-        translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .secondarySystemBackground
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = 20
+        stackView.backgroundColor = .orange
+        
+        cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        cityNameLabel.text = ""
+        cityNameLabel.textAlignment = .center
+        cityNameLabel.numberOfLines = 0
+        
+        temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+        temperatureLabel.text = ""
+        temperatureLabel.textAlignment = .center
         
         cityNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        cityNameTextField.placeholder = "City name"
+        cityNameTextField.placeholder = "Enter city name"
+        cityNameTextField.textAlignment = .center
         cityNameTextField.delegate = self
     }
     
     func layout() {
+        stackView.addArrangedSubview(cityNameLabel)
+        stackView.addArrangedSubview(temperatureLabel)
+        stackView.addArrangedSubview(cityNameTextField)
         
+        addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
     }
 }
 

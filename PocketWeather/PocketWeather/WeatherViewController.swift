@@ -12,10 +12,7 @@ class WeatherViewController: UIViewController {
     var weather: WeatherResult?
     
     let stackView = UIStackView()
-//    let image
-    let cityNameLabel = UILabel()
-    let temperatureLabel = UILabel()
-    let cityNameTextField = UITextField()
+    let weatherView = WeatherView()
     let searchButton = UIButton()
     
     
@@ -41,19 +38,7 @@ extension WeatherViewController {
         stackView.spacing = 20
         stackView.backgroundColor = .orange
         
-        cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        cityNameLabel.text = ""
-        cityNameLabel.textAlignment = .center
-        cityNameLabel.numberOfLines = 0
-        
-        temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-        temperatureLabel.text = ""
-        temperatureLabel.textAlignment = .center
-        
-        cityNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        cityNameTextField.placeholder = "Enter city name"
-        cityNameTextField.textAlignment = .center
-        cityNameTextField.delegate = self
+        weatherView.translatesAutoresizingMaskIntoConstraints = false
         
         searchButton.translatesAutoresizingMaskIntoConstraints = false
         searchButton.configuration = .filled()
@@ -63,9 +48,7 @@ extension WeatherViewController {
     }
     
     func layout() {
-        stackView.addArrangedSubview(cityNameLabel)
-        stackView.addArrangedSubview(temperatureLabel)
-        stackView.addArrangedSubview(cityNameTextField)
+        stackView.addArrangedSubview(weatherView)
         stackView.addArrangedSubview(searchButton)
         
         view.addSubview(stackView)
@@ -74,22 +57,6 @@ extension WeatherViewController {
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension WeatherViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        cityNameTextField.endEditing(true)
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
     }
 }
 
@@ -102,8 +69,8 @@ extension WeatherViewController {
             case .success(let weather):
                 self.weather = weather
                 print(weather.main.temp)
-                self.cityNameLabel.text = weather.name
-                self.temperatureLabel.text = String(weather.main.temp)
+                self.weatherView.cityNameLabel.text = weather.name
+                self.weatherView.temperatureLabel.text = String(weather.main.temp)
             case .failure(let error):
                 self.displayError(error)
             }
@@ -133,7 +100,6 @@ extension WeatherViewController {
         errorAlert.title = title
         errorAlert.message = message
 
-        // Don't present one error if another has already been presented
         if !errorAlert.isBeingPresented {
             present(errorAlert, animated: true, completion: nil)
         }
@@ -143,7 +109,7 @@ extension WeatherViewController {
 // MARK: - Actions
 extension WeatherViewController {
     @objc func searchTapped(sender: UIButton) {
-        fetchWeather(cityName: cityNameTextField.text ?? "")
+        fetchWeather(cityName: weatherView.cityNameTextField.text ?? "")
     }
     
     @objc func refreshContent() {
