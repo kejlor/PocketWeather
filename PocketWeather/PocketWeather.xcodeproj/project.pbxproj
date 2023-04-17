@@ -19,6 +19,7 @@
 		E9D3284C29E0FF6300EE5BA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D3284B29E0FF6300EE5BA4 /* AppDelegate.swift */; };
 		E9D3285529E0FF6400EE5BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D3285429E0FF6400EE5BA4 /* Assets.xcassets */; };
 		E9D3285829E0FF6400EE5BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9D3285629E0FF6400EE5BA4 /* LaunchScreen.storyboard */; };
+		E9D53DCF29EDA6CF0094333D /* UIResponder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D53DCE29EDA6CF0094333D /* UIResponder+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		E9D3285429E0FF6400EE5BA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9D3285729E0FF6400EE5BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9D3285929E0FF6400EE5BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9D53DCE29EDA6CF0094333D /* UIResponder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				E9A863BE29E83F6E007949A1 /* APIKeyable.swift */,
 				E9ADD46229E9ABC600790A80 /* WeatherType.swift */,
+				E9D53DCE29EDA6CF0094333D /* UIResponder+Utils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				E9A863B929E83D48007949A1 /* Weather.swift in Sources */,
 				E9ADD46529E9B66D00790A80 /* WeatherLabelView.swift in Sources */,
 				E9A863BC29E83E30007949A1 /* WeatherManager.swift in Sources */,
+				E9D53DCF29EDA6CF0094333D /* UIResponder+Utils.swift in Sources */,
 				E9A863C629E84B24007949A1 /* WeatherView.swift in Sources */,
 				E9ADD46129E98EF700790A80 /* SearchTextField.swift in Sources */,
 				E9D3284C29E0FF6300EE5BA4 /* AppDelegate.swift in Sources */,
