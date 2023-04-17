@@ -35,12 +35,23 @@ extension WeatherViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 20
-        stackView.backgroundColor = .orange
+        stackView.alignment = .center
         
         weatherView.translatesAutoresizingMaskIntoConstraints = false
+        weatherView.isHidden = true
         
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         searchTextField.delegate = self
+        
+        let gradient: CAGradientLayer = CAGradientLayer()
+        
+        gradient.colors = [UIColor.black.cgColor, UIColor.blue.cgColor]
+        gradient.locations = [0.0 , 1.0]
+        gradient.startPoint = CGPoint(x : 0.0, y : 0)
+        gradient.endPoint = CGPoint(x :0.0, y: 0.5) // you need to play with 0.15 to adjust gradient vertically
+        gradient.frame = view.bounds
+        
+        view.layer.addSublayer(gradient)
     }
     
     func layout() {
@@ -51,7 +62,7 @@ extension WeatherViewController {
         
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 }
@@ -59,18 +70,11 @@ extension WeatherViewController {
 // MARK: - Networking
 extension WeatherViewController {
     private func fetchWeather(cityName: String) {
-        // zmienic
         weatherManager.fetchWeather(forCityName: cityName) { result in
             switch result {
             case .success(let weather):
-                self.weather = weather
-                self.weatherView.cityNameLabelView.label.text = weather.name
-                self.weatherView.weatherType = WeatherType(rawValue: weather.weather[0].main) ?? .Clear
-                self.weatherView.windLabelView.label.text = String(weather.wind.speed)
-                self.weatherView.temperatureLabelView.label.text = String(weather.main.temp)
-                self.weatherView.humidityLabelView.label.text = String(weather.main.humidity)
-                self.weatherView.descriptionLabelView.label.text = weather.weather[0].description
-                self.weatherView.checkWeatherImage()
+                self.changeLabels(weather)
+                self.weatherView.isHidden = false
             case .failure(let error):
                 self.displayError(error)
             }
@@ -81,7 +85,7 @@ extension WeatherViewController {
         let titleAndMessage = titleAndMessage(for: error)
         self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
     }
-
+    
     func titleAndMessage(for error: NetworkError) -> (String, String) {
         let title: String
         let message: String
@@ -99,7 +103,7 @@ extension WeatherViewController {
     private func showErrorAlert(title: String, message: String) {
         errorAlert.title = title
         errorAlert.message = message
-
+        
         if !errorAlert.isBeingPresented {
             present(errorAlert, animated: true, completion: nil)
         }
@@ -108,10 +112,6 @@ extension WeatherViewController {
 
 // MARK: - SearchTextFieldDelegate
 extension WeatherViewController: SearchTextFieldDelegate {
-    func editingChanged(_ sender: SearchTextField) {
-        
-    }
-    
     func editingDidEnd(_ sender: SearchTextField) {
         fetchWeather(cityName: sender.textField.text ?? "")
     }
@@ -125,5 +125,17 @@ extension WeatherViewController {
     
     private func reset() {
         weather = nil
+    }
+    
+    private func changeLabels(_ weather: WeatherResult) {
+        self.weather = weather
+        self.weatherView.cityNameLabelView.label.text = weather.name
+        self.weatherView.weatherType = WeatherType(rawValue: weather.weather[0].main) ?? .Clear
+        self.weatherView.windLabelView.label.text = String(weather.wind.speed) + " km/h"
+        self.weatherView.temperatureLabelView.label.text = String(weather.main.temp) + "°"
+        self.weatherView.humidityLabelView.label.text = String(weather.main.humidity)
+        self.weatherView.descriptionLabelView.label.text = weather.weather[0].description
+        self.weatherView.weatherTextLabel.text = weather.weather[0].main
+        self.weatherView.checkWeatherImage()
     }
 }

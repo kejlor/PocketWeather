@@ -13,8 +13,9 @@ protocol SearchTextFieldDelegate: AnyObject {
 
 class SearchTextField: UIView {
     
-    let magnifyingglassImageView = UIImageView(image: UIImage(systemName: "magnifyingglass"))
+    let magnifyingglassImageView = UIImageView(image: UIImage(systemName: "magnifyingglass")?.withTintColor(.white, renderingMode: .alwaysOriginal))
     let textField = UITextField()
+    let dividerView = UIView()
     
     let placeHolderText: String
     weak var delegate: SearchTextFieldDelegate?
@@ -49,16 +50,21 @@ extension SearchTextField {
         magnifyingglassImageView.translatesAutoresizingMaskIntoConstraints = false
         
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.textColor = .white
         textField.placeholder = placeHolderText
         textField.delegate = self
         textField.keyboardType = .asciiCapable
         textField.attributedPlaceholder = NSAttributedString(string:placeHolderText,
-                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel])
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        dividerView.translatesAutoresizingMaskIntoConstraints = false
+        dividerView.backgroundColor = .white
     }
     
     func layout() {
         addSubview(magnifyingglassImageView)
         addSubview(textField)
+        addSubview(dividerView)
         
         // magnifyingglassImageView
         NSLayoutConstraint.activate([
@@ -71,6 +77,14 @@ extension SearchTextField {
             textField.topAnchor.constraint(equalTo: topAnchor),
             textField.leadingAnchor.constraint(equalToSystemSpacingAfter: magnifyingglassImageView.trailingAnchor, multiplier: 1),
             textField.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+        
+        // divider
+        NSLayoutConstraint.activate([
+            dividerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            dividerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            dividerView.heightAnchor.constraint(equalToConstant: 1),
+            dividerView.topAnchor.constraint(equalToSystemSpacingBelow: textField.bottomAnchor, multiplier: 1)
         ])
         
         // CHCR
