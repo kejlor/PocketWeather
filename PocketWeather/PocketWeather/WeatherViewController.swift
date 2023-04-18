@@ -15,7 +15,7 @@ class WeatherViewController: UIViewController {
     let weatherView = WeatherView()
     let searchTextField = SearchTextField(placeHolderText: "Enter city name")
     
-    var weatherManager: WeatherManager = WeatherManager()
+    var weatherManager: WeatherManageable = WeatherManager()
     
     lazy var errorAlert: UIAlertController = {
         let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
@@ -100,7 +100,7 @@ extension WeatherViewController {
             title = "Server Error"
             message = "We could not process your request. Please try again."
         case .decodingError:
-            title = "Network Error"
+            title = "Decoding Error"
             message = "Ensure you have provided correct city name. Please try again."
         }
         return (title, message)
@@ -168,5 +168,16 @@ extension WeatherViewController {
 
     @objc func keyboardWillHide(notification: NSNotification) {
         view.frame.origin.y = 0
+    }
+}
+
+// MARK: - Unit testing
+extension WeatherViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+        return titleAndMessage(for: error)
+    }
+    
+    func forceFetchWeather() {
+        fetchWeather(cityName: "London")
     }
 }

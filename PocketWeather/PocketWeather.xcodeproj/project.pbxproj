@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E995ECC129EEBB480089D947 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E995ECC029EEBB480089D947 /* WeatherTests.swift */; };
+		E995ECC529EEC9710089D947 /* WeatherViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E995ECC429EEC9710089D947 /* WeatherViewControllerTests.swift */; };
 		E9A863B629E83C41007949A1 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9A863B529E83C41007949A1 /* Keys.plist */; };
 		E9A863B929E83D48007949A1 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A863B829E83D48007949A1 /* Weather.swift */; };
 		E9A863BC29E83E30007949A1 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A863BB29E83E30007949A1 /* WeatherManager.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		E995ECB629EEBAFA0089D947 /* PocketWeatherUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketWeatherUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E995ECC029EEBB480089D947 /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
+		E995ECC429EEC9710089D947 /* WeatherViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewControllerTests.swift; sourceTree = "<group>"; };
 		E9A863B529E83C41007949A1 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		E9A863B829E83D48007949A1 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		E9A863BB29E83E30007949A1 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				E995ECC029EEBB480089D947 /* WeatherTests.swift */,
+				E995ECC429EEC9710089D947 /* WeatherViewControllerTests.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E995ECC529EEC9710089D947 /* WeatherViewControllerTests.swift in Sources */,
 				E995ECC129EEBB480089D947 /* WeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
