@@ -28,3 +28,6 @@ Unit tests were provided to check mocked API call and error occurencies.
 
 #### Notification
 <img src="Images/notification.png" width="400" height="800">
+
+#### Testing results
+<img src="Images/tests.png">
