@@ -6,10 +6,12 @@ Unit tests were provided to check mocked API call and error occurencies.
 <br>
 <br>
 <br>
+To make the app work on your device you need to generate an API key and insert it into Keys.plist.
+<br>
 
 ### Used Technologies:
 1. UIKit
-2. Fetching JSON data from API
+2. Fetching JSON data from API - https://openweathermap.org
 3. SFSymbols
 4. Unit tests
 5. Notifications
